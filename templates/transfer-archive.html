@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="nav">
+    <h2>– TRANSFERS ARCHIVE –</h2>
+    <table class="content-nav"></table>
+</div>
+<div class="content">
+    <div class="stats">
+        {% for season in seasons %}
+        <div>
+            <a href="/season/{{ season.id }}/">{{ season.name }}</a>
+        </div>
+        {% endfor %}
+        <div>
+            <a href="{% url 'latest-transfers' %}">Latest-transfers</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
