@@ -1,12 +1,6 @@
-from colorsys import ONE_SIXTH
-from itertools import batched
-from tkinter.constants import CASCADE
 
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.db.models import PositiveIntegerField, PositiveSmallIntegerField, SET_NULL
-from django.forms import CharField
-from django.utils.translation.template import blankout
 
 
 class Season(models.Model):
@@ -29,7 +23,7 @@ class Club(models.Model):
     president = models.CharField(max_length=255, blank=True, null=True)
     coach = models.CharField(max_length=255, blank=True, null=True)
     found_date = models.DateField(blank=True, null=True)
-    country = models.ForeignKey(Country, on_delete=SET_NULL, null=True)
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
@@ -39,9 +33,9 @@ class Player(models.Model):
     name = models.CharField(max_length=255)
     age = models.PositiveSmallIntegerField()
     position = models.CharField(max_length=255, blank=True, null=True)
-    country = models.ForeignKey(Country, on_delete=SET_NULL, null=True)
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
     price = models.FloatField(blank=True, null=True, validators=[MinValueValidator(0.0)])
-    club = models.ForeignKey(Club, on_delete=SET_NULL, null=True)
+    club = models.ForeignKey(Club, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.name
